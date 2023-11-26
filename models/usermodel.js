@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema(
     },
     role: {
       type: String,
-      //   required: true,
+        // required: true,
       default: 0,
     },
     question:{

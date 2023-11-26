@@ -27,6 +27,7 @@ app.post("/login", authRoutes);
 app.post("/forgot-password", authRoutes);
 app.get("/test", authRoutes);
 app.get("/user-auth", authRoutes);
+app.get("/admin-auth", authRoutes);
 //port
 const PORT = process.env.PORT || 8080;
 const dev = process.env.DEV_ENV;

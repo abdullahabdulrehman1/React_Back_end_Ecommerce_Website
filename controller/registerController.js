@@ -7,6 +7,12 @@ import authhelper from "../helpers/authhelper.js";
 import json from "jsonwebtoken";
 import dotenv from "dotenv";
 import jsonwebtoken from "jsonwebtoken";
+
+
+
+
+
+
 export const registerController = async (req, res) => {
   try {
     const { name, email, password, question } = req.body;
@@ -14,9 +20,6 @@ export const registerController = async (req, res) => {
     if (!name) {
       return res.status(400).json({ message: "Name is required" });
     }
-    // if (!phone) {
-    //   message: "Phone is required";
-    // }
 
     if (!email) {
       return res.status(400).json({ message: "Email is required" });
@@ -42,6 +45,7 @@ export const registerController = async (req, res) => {
       email,
       name,
       question,
+
       // address,
       // phone,
       password: hashspassword,
@@ -57,6 +61,49 @@ export const registerController = async (req, res) => {
     );
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const loginController = async (req, res) => {
   try {
@@ -88,6 +135,7 @@ export const loginController = async (req, res) => {
         role: emailcheck.role,
         email: emailcheck.email,
         question: emailcheck.question,
+      
         // user: usermodel.newUser,
       },
       process.env.JSON_WEB,
@@ -100,9 +148,11 @@ export const loginController = async (req, res) => {
       token: token,
       user: {
         id: emailcheck._id,
-        role: emailcheck.role,
-        email: emailcheck.email,
+        role: emailcheck?.role,
+        email: emailcheck?.email,
         question: emailcheck.question,
+        password: emailcheck.password,
+        auth: true,
       },
     });
   } catch (error) {
@@ -113,6 +163,61 @@ export const loginController = async (req, res) => {
 // ... (Previous code remains unchanged)
 
 // import { hashpassword } from "../helpers/authhelper.js"; // Update the import statement
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const forgotPasswordController = async (req, res) => {
   try {
@@ -130,7 +235,7 @@ export const forgotPasswordController = async (req, res) => {
 
     // Check if the user exists
     const user = await usermodel.findOne({ email, question });
- 
+
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
